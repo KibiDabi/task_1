@@ -1,0 +1,237 @@
+/* Base container with top/bottom margin */
+.section-container {
+  margin: 200vh 0;
+}
+
+/* BEM styles */
+.custom-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.custom-section--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.custom-section__content {
+  max-width: 1440px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #e3cfcf;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+
+.custom-section__image img {
+  max-width: 100%;
+  flex: 1;
+}
+
+.custom-section__title {
+  font-size: 2.5rem; /* Adjust as per Figma */
+  line-height: 1.2; /* Adjust for better line spacing */
+  margin-bottom: 16px;
+  font-weight: 300;
+  font-family: "Futura", sans-serif;
+}
+.custom-section__description {
+  visibility: visible;
+  position: absolute;
+}
+
+.custom-section__text--hidden {
+  visibility: none;
+}
+
+.custom-section__description,
+.custom-section__extra-text {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; /* Smooth fade and slight movement */
+}
+
+.custom-section__text {
+  position: relative;
+  flex: 1; /* Text takes up equal space */
+  display: flex;
+  flex-direction: column; /* Stack title, description, and button */
+  align-items: center; /* Center content horizontally */
+  justify-content: center; /* Center content vertically */
+  text-align: center; /* Center-align text */
+  padding: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: lighter;
+  font-size: 18px;
+}
+
+.custom-section__toggle-button {
+  margin-top: 10px;
+  cursor: pointer;
+  border: 2px solid;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  transition-duration: 0.3s;
+  padding: 16px;
+  background-color: #e3cfcf;
+  width: 200px;
+  font-weight: bold;
+}
+
+.custom-section__toggle-button:hover {
+  background-color: #978585;
+}
+
+.custom-section__extra-text {
+  opacity: 0;
+  transform: translateY(10px); /* Slight offset for smooth entry */
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  visibility: hidden; /* Hides the element from layout while allowing transitions */
+  pointer-events: none; /* Prevent interaction when hidden */
+}
+
+/* Show the extra text with a fade-in effect */
+.custom-section__extra-text--visible {
+  opacity: 1;
+  transform: translateY(0); /* Reset offset */
+  visibility: visible; /* Show the element */
+  pointer-events: auto; /* Enable interaction when visible */
+}
+
+/* Hide the original text with a fade-out effect */
+.custom-section__text--hidden {
+  opacity: 0; /* Fade out */
+  transform: translateY(-10px); /* Slight offset for smooth exit */
+  visibility: hidden; /* Hides the element from layout */
+  pointer-events: none; /* Prevent interaction when hidden */
+}
+
+/* Responsive styles */
+@media (min-width: 768px) {
+  .custom-section__content {
+    flex-direction: column;
+
+    height: auto;
+  }
+
+  .custom-section__title {
+    max-width: 600px; /* Adjust for tablet view */
+    font-size: 2rem; /* Slightly larger font for larger screens */
+    text-align: center; /* Aligns text for larger screens */
+  }
+
+  .custom-section__text {
+    margin-left: 32px;
+    text-align: center;
+    align-items: center;
+  }
+}
+
+@media (min-width: 1440px) {
+  .custom-section__content {
+    display: flex;
+    flex-direction: row; /* Arrange image and text side-by-side */
+    justify-content: space-between; /* Space them evenly */
+    align-items: stretch; /* Ensure equal height for both areas */
+    max-width: 1440px;
+    margin: 0 auto;
+    height: 100%;
+  }
+
+  .custom-section__image {
+    flex: 1; /* Ensure both areas take equal width */
+    display: flex;
+  }
+
+  .custom-section__image img {
+    width: 100%;
+    height: 100%; /* Ensure the image maintains aspect ratio */
+    object-fit: cover;
+  }
+
+  .custom-section__text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 32px; /* Figma padding: Right padding set */
+    text-align: center;
+    max-width: 576px;
+  }
+
+  .custom-section__description {
+    font-size: 1rem; /* Adjust to match design */
+    line-height: 1.5;
+    margin-bottom: 24px; /* Space before button */
+  }
+
+  .custom-section__extra-text {
+    font-size: 1rem; /* Adjust to match design */
+    line-height: 1.5;
+    margin-bottom: 24px; /* Space before button */
+  }
+
+  .custom-section__toggle-button {
+    padding: 12px 24px;
+    border: 2px solid black;
+    background-color: transparent;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .custom-section__toggle-button:hover {
+    background-color: #e3cfcf;
+    color: white;
+  }
+}
+
+@media (min-width: 375px) {
+  .custom-section__text {
+    padding: 0 16px; /* Adds space between text and edges */
+    text-align: center; /* Centers the content */
+  }
+
+  .custom-section__title {
+    max-width: 450px; /* Figma-specific indentation for the title */
+    margin: 0 auto; /* Centers the title */
+    margin-top: 73px;
+    font-size: 1.5rem; /* Adjust as per Figma */
+    line-height: 1.3; /* Improves readability */
+  }
+
+  .custom-section__description {
+    max-width: 460px; /* Slightly wider than the title */
+    margin: 15px auto 12px; /* Centers the description and adds spacing */
+    font-size: 1rem; /* Ensure readable font size */
+    line-height: 1.2; /* Improves readability */
+    font-family: "Futura", sans-serif;
+    font-weight: 200;
+  }
+
+  .custom-section__extra-text {
+    max-width: 460px; /* Slightly wider than the title */
+    margin: 15px auto 12px; /* Centers the description and adds spacing */
+    font-size: 1rem; /* Ensure readable font size */
+    line-height: 1.2; /* Improves readability */
+    font-family: "Futura", sans-serif;
+    font-weight: 200;
+  }
+
+  .custom-section__toggle-button {
+    margin-top: 20px; /* Adds spacing below the description */
+    margin-bottom: 60px;
+  }
+
+  .custom-section__toggle-button:hover {
+    background-color: #7b6262;
+    color: white;
+  }
+}
